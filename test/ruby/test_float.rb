@@ -171,4 +171,10 @@ class TestFloat < Test::Unit::TestCase
     assert_raise(ArgumentError) { 1.0 < nil }
     assert_raise(ArgumentError) { 1.0 <= nil }
   end
+
+  def test_long_string
+    5.times do
+      assert_in_delta(10.0, (("1."+"1"*300000).to_f*9), Float::EPSILON)
+    end
+  end
 end
